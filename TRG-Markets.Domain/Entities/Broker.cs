@@ -13,6 +13,6 @@ namespace TRG_Markets.Domain.Entities
         public string BrokerType { get; set; } = string.Empty;
         public bool IsActive { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-    
+
     }
 }

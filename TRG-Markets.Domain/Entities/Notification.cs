@@ -4,8 +4,8 @@ using System.Text;
 
 namespace TRG_Markets.Domain.Entities
 {
-    
-    
+
+
     public class  Notification
 
     {
@@ -18,6 +18,6 @@ namespace TRG_Markets.Domain.Entities
         public string Severity { get; set; } = "Information";
         public int? UserId { get; set; }
         public bool IsArchived { get; set; }
-        
+
     }
 }

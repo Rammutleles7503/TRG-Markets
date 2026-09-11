@@ -7,7 +7,7 @@ namespace TRG_Markets.API.Controllers;
     public class TradingAccountsController : ControllerBase
     {
        private readonly ITradingAccountService _tradingAccountService;
-       public TradingAccountsController(ITradingAccountService tradingAccountService) { 
+       public TradingAccountsController(ITradingAccountService tradingAccountService) {
            _tradingAccountService = tradingAccountService;
        }
        [HttpGet]

@@ -7,7 +7,7 @@ using TRG_Markets.Domain.Entities;
 namespace TRG_Markets.Application.Interfaces
 {
     public interface INotificationService
-        
+
     {
         Task<List<Notification>> GetALLAsync();
         Task<List<Notification>> GetUnreadAsync();

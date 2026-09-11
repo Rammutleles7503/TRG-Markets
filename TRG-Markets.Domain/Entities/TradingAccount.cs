@@ -26,4 +26,3 @@ namespace TRG_Markets.Domain.Entities
 
     }
 }
-

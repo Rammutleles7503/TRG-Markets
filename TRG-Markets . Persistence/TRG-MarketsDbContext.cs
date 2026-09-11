@@ -21,5 +21,21 @@ namespace TRG_Markets.Persistence
         public DbSet<TradingSessionNotification> TradingSessionNotifications { get; set; } = null!;
         public DbSet<SystemAlert> SystemAlerts { get; set; } = null!;
         public DbSet<MarketHoliday> MarketHolidays { get; set; } = null!;
+        public DbSet<ProfitLightAssessment> ProfitLightAssessments { get; set; } = null!;
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ProfitLightAssessment>(entity =>
+            {
+                entity.HasKey(x => x.Id);
+                entity.HasIndex(x => new { x.EaId, x.CalculatedAtUtc });
+                entity.Property(x => x.EaId).HasMaxLength(100).IsRequired();
+                entity.Property(x => x.Symbol).HasMaxLength(32).IsRequired();
+                entity.Property(x => x.Timeframe).HasMaxLength(16).IsRequired();
+                entity.Property(x => x.Reasons).HasMaxLength(2000).IsRequired();
+                entity.Property(x => x.ModelVersion).HasMaxLength(64).IsRequired();
+                entity.Property(x => x.ExpectedValueAfterCosts).HasPrecision(18, 4);
+            });
+        }
     }
 }

@@ -21,10 +21,10 @@ namespace TRG_Markets.Domain.Entities
         public string AccountNumber { get; set; } = string.Empty;
         public string ServerName { get; set; } = string.Empty;
         public string BrokerServer { get; set; } = string.Empty;
-        
-       
-       
-        
-        
+
+
+
+
+
     }
 }

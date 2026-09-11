@@ -47,4 +47,3 @@ namespace TRG_Markets.API
         }
     }
 }
-

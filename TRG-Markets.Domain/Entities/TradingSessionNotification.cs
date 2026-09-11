@@ -12,7 +12,6 @@ namespace TRG_Markets.Domain.Entities
         public DateTime NotificationTime { get; set; }
         public bool IsSent { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-    
+
     }
 }
-

@@ -7,4 +7,5 @@
   <Project Path="TRG-Markets.API/TRG-Markets.API.csproj" />
   <Project Path="TRG-Markets.Application/TRG-Markets.Application.csproj" />
   <Project Path="TRG-Markets.Domain/TRG-Markets.Domain.csproj" />
+  <Project Path="TRG-Markets.Tests/TRG-Markets.Tests.csproj" />
 </Solution>

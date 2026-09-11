@@ -21,5 +21,3 @@ namespace TRG_Markets.API.Controllers
         } //
     } //
 } //
-    
-
