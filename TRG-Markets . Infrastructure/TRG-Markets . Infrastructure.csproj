@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>TRG_Markets_._Infrastructure</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <!-- Valid package id without spaces or invalid characters to satisfy dotnet pack validation -->
+    <PackageId>TRG.Markets.Infrastructure</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TRG-Markets . Persistence\TRG-Markets . Persistence.csproj" />
+  </ItemGroup>
+
+</Project>

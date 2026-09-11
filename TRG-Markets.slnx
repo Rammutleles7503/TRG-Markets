@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+  </Folder>
+  <Project Path="TRG-Markets . Infrastructure/TRG-Markets . Infrastructure.csproj" />
+  <Project Path="TRG-Markets . Persistence/TRG-Markets . Persistence.csproj" />
+  <Project Path="TRG-Markets.API/TRG-Markets.API.csproj" />
+  <Project Path="TRG-Markets.Application/TRG-Markets.Application.csproj" />
+  <Project Path="TRG-Markets.Domain/TRG-Markets.Domain.csproj" />
+</Solution>
