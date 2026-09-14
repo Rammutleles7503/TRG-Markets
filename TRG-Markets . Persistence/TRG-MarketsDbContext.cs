@@ -20,7 +20,8 @@ namespace TRG_Markets.Persistence
         public DbSet<Broker> Brokers { get; set; } = null!;
         public DbSet<TradingSessionNotification> TradingSessionNotifications { get; set; } = null!;
         public DbSet<SystemAlert> SystemAlerts { get; set; } = null!;
-        public DbSet<MarketHoliday> MarketHolidays { get; set; } = null!;
+        public DbSet<MarketHoliday> MarketHolidays { get ; set ; } = null!;
+        public DbSet<EquitySnapshot> EquitySnapshots { get ; set ; } = null!;
         public DbSet<ProfitLightAssessment> ProfitLightAssessments { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

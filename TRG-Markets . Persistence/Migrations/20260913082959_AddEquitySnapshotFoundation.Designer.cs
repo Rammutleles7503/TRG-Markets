@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TRG_Markets.Persistence;
 
@@ -11,9 +12,11 @@ using TRG_Markets.Persistence;
 namespace TRG_Markets_._Persistence.Migrations
 {
     [DbContext(typeof(TRGMarketsDbContext))]
-    partial class TRGMarketsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260913082959_AddEquitySnapshotFoundation")]
+    partial class AddEquitySnapshotFoundation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
