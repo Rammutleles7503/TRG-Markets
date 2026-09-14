@@ -23,6 +23,12 @@ namespace TRG_Markets.Infrastructure.Services
         }
         public async Task<EquitySnapshot> RecordSnapshotAsync(EquitySnapshot snapshot)
         {
+            var wasAlreadySuspended = await _dbContext.EquitySnapshots
+                .Where(x => x.TradingAccountId == snapshot.TradingAccountId)
+                .OrderByDescending(x => x.RecordedAtUtc)
+                .Select(x => x.TradingSuspended)
+                .FirstOrDefaultAsync();
+
             var previousPeak = await _dbContext.EquitySnapshots
                 .Where(x => x.TradingAccountId == snapshot.TradingAccountId)
                 .MaxAsync(x => (decimal?)x.PeakEquity) ?? snapshot.Equity;
@@ -39,7 +45,7 @@ namespace TRG_Markets.Infrastructure.Services
             _dbContext.EquitySnapshots.Add(snapshot);
             await _dbContext.SaveChangesAsync();
 
-            if (snapshot.TradingSuspended)
+            if (snapshot.TradingSuspended && !wasAlreadySuspended)
             {
                 var alertMessage = $"Trading account {snapshot.TradingAccountId} has been suspended because drawdown reached {snapshot.DrawdownPercentage:F2}%";
 
