@@ -75,6 +75,38 @@ namespace TRG_Markets.Infrastructure.Services
                 }
             }
 
+            // If the account was previously suspended but is no longer suspended, emit recovery notifications
+            if (wasAlreadySuspended && !snapshot.TradingSuspended)
+            {
+                var recoveryMessage = $"Trading account {snapshot.TradingAccountId} recovered below the 10.00% maximum drawdown threshold. Current drawdown is {snapshot.DrawdownPercentage:F2}%.";
+
+                if (_notificationService is not null)
+                {
+                    await _notificationService.CreateAsync(new Notification
+                    {
+                        Title = "Equity Guardian Recovery",
+                        Message = recoveryMessage,
+                        Type = "Risk",
+                        Severity = "Information",
+                        IsRead = false,
+                        IsArchived = false,
+                        CreatedAt = DateTime.UtcNow
+                    });
+                }
+
+                if (_systemAlertService is not null)
+                {
+                    await _systemAlertService.CreateAlertAsync(new SystemAlert
+                    {
+                        Title = "Equity Guardian Recovery",
+                        Message = recoveryMessage,
+                        Severity = "Info",
+                        IsRead = false,
+                        CreatedAt = DateTime.UtcNow
+                    });
+                }
+            }
+
             return snapshot;
         }
 
