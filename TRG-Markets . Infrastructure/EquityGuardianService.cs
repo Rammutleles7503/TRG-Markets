@@ -38,7 +38,8 @@ namespace TRG_Markets.Infrastructure.Services
             snapshot.DrawdownPercentage = snapshot.PeakEquity > 0
                 ? snapshot.DrawdownAmount / snapshot.PeakEquity * 100m
                 : 0m;
-            snapshot.TradingSuspended = snapshot.DrawdownPercentage >= 10m;
+            // Do not suspend for exactly 10%; suspend only when drawdown strictly exceeds the threshold
+            snapshot.TradingSuspended = snapshot.DrawdownPercentage > 10m;
             snapshot.ProtectionReason = snapshot.TradingSuspended ? "Maximum drawdown limit reached." : null;
             snapshot.RecordedAtUtc = DateTime.UtcNow;
 

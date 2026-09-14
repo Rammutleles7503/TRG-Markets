@@ -66,5 +66,33 @@ namespace TRG_Markets.Tests
             Assert.Equal(15m, result.DrawdownPercentage);
             Assert.Equal("Maximum drawdown limit reached.", result.ProtectionReason);
         }
+
+        [Fact]
+        public async Task RecordSnapshot_WithTenPercentDrawdown_DoesNotSuspendTrading()
+        {
+            await using var dbContext = CreateDbContext();
+            var service = new EquityGuardianService(dbContext);
+
+            await service.RecordSnapshotAsync(new EquitySnapshot
+            {
+                TradingAccountId = 2,
+                Balance = 2000m,
+                Equity = 2000m
+            });
+
+            var result = await service.RecordSnapshotAsync(new EquitySnapshot
+            {
+                TradingAccountId = 2,
+                Balance = 2000m,
+                Equity = 1800m,
+                FloatingProfitLoss = -200m
+            });
+
+            Assert.False(result.TradingSuspended);
+            Assert.Equal(200m, result.DrawdownAmount);
+            Assert.Equal(10m, result.DrawdownPercentage);
+        }
+       
     }
+
 }
