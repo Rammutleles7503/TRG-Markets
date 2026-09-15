@@ -26,6 +26,7 @@ namespace TRG_Markets.Infrastructure.Services
             var wasAlreadySuspended = await _dbContext.EquitySnapshots
                 .Where(x => x.TradingAccountId == snapshot.TradingAccountId)
                 .OrderByDescending(x => x.RecordedAtUtc)
+
                 .Select(x => x.TradingSuspended)
                 .FirstOrDefaultAsync();
 
