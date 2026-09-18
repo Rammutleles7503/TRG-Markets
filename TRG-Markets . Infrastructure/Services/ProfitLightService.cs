@@ -7,7 +7,7 @@ using TRG_Markets.Persistence;
 
 namespace TRG_Markets.Infrastructure.Services;
 
-public sealed class ProfitLightService(TRGMarketsDbContext dbContext) : IProfitLightService
+public sealed class ProfitLightService(TRGMarketsDbContext dbContext, IEntryAuthorityService? entryAuthorityService = null) : IProfitLightService
 {
     private static readonly TimeSpan MaximumDataAge = TimeSpan.FromMinutes(2);
     private static readonly TimeSpan AssessmentLifetime = TimeSpan.FromMinutes(1);
@@ -51,6 +51,18 @@ public sealed class ProfitLightService(TRGMarketsDbContext dbContext) : IProfitL
         else
         {
             reasons.Add("DETERMINISTIC_V1_SCORE_BAND");
+        }
+
+
+        if (entryAuthorityService is not null)
+        {
+            bool entryAllowed = await entryAuthorityService.ShouldAllowEntryAsync(request.AccountId);
+            if (!entryAllowed)
+            {
+                state = ProfitLightState.Black;
+                action = ProfitLightAction.Reject;
+                reasons.Add("ENTRY_AUTHORITY_BLOCKED");
+            }
         }
 
         var entity = new ProfitLightAssessment
