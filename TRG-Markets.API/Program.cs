@@ -20,6 +20,8 @@ builder.Services.AddScoped<ITradeService, TradeService>();
 builder.Services.AddScoped<IProfitLightService, ProfitLightService>();
 builder.Services.AddScoped<IEquityGuardianService, EquityGuardianService>();
 builder.Services.AddScoped<IEntryAuthorityService, EntryAuthorityService>();
+builder.Services.AddSingleton<IEmergencyControlService, EmergencyControlService>();
+
 builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
