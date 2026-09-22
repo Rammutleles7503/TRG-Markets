@@ -21,6 +21,8 @@ builder.Services.AddScoped<IProfitLightService, ProfitLightService>();
 builder.Services.AddScoped<IEquityGuardianService, EquityGuardianService>();
 builder.Services.AddScoped<IEntryAuthorityService, EntryAuthorityService>();
 builder.Services.AddSingleton<IEmergencyControlService, EmergencyControlService>();
+builder.Services.AddScoped<ISystemOrchestrationService, SystemOrchestrationService>();
+builder.Services.AddScoped<IMt5BridgeService, Mt5BridgeService>();
 
 builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
